@@ -1,7 +1,7 @@
 function countBs(str1){
     let c=0
     for(let i=0; i<str1.length-1; i++){
-        if (str1[i] === 'o'){
+        if (str1[i] === ''){
             c ++
         }
     }

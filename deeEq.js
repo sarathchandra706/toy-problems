@@ -3,16 +3,16 @@ function deepEqual(v1,v2){
     if (v1 == null || typeof v1!= 'object' || v2 == null || typeof v2 != 'object')
     return false;
     var c1 =0,c2 =0;
-    for (var i in v1){
+    for (var i in v1)
      c1 += 1;
-    }
     for (var i in v2){
-        c2 += 1;
-    }
-    if (!( i in v1) || !(deepEqual(v1[i],v2[i])))
-      return false
-}
+     c2 += 1;
     
+    if (!( i in v1) || !(deepEqual(v1[i],v2[i])))
+      return false;
+}
+    return c1 = c2;
+}
     let a={
         name :"sunny",
         phn :9640361756,
@@ -24,7 +24,7 @@ function deepEqual(v1,v2){
         name :"sunny",
         phn :9640361756,
         dist :"nlr",
-        clg : "iiit"
+        clg : "msit"
     }
 
   console.log(deepEqual(a,b))  
