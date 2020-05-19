@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .task1 {
+                align-content: space-around;
+                padding-right: 100px;
+                margin: 8px;
+            }
+            .marktask {
+                align-content: space-around;
+                white-space: pre;
+                margin: 8px;
+            }
+
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded',function() {
+                document.querySelector('#submit').disabled = true;
+                document.querySelector('#task').onkeyup = () => {
+                    document.querySelector('#submit').disabled = false;
+                };
+                document.querySelector('#newtask').onsubmit = () =>{
+                    const tk = document.querySelector('#task').value;
+                    addTask(tk)
+                    document.querySelector('#task').value = '';
+                    document.querySelector('#submit').disabled = true;
+                    //stop form from submitting
+                    return false;
+                }
+            })
+            function addTask(newtask){
+                const task = document.createElement('li');
+                task.className = 'task1'
+                task.innerHTML = newtask;
+
+                const markTask = document.createElement('button');
+                markTask.className = 'marktask';
+                markTask.innerHTML = 'Mark';
+                task.append(markTask)
+
+                const deleteTask = document.createElement('button');
+                deleteTask.class = 'delete';
+                deleteTask.innerHTML='Delete';
+                task.append(deleteTask);
+
+                deleteTask.onclick = function() {
+                    this.parentElement.remove();
+                }
+
+                markTask.onclick = function(){
+                    if(markTask.innerHTML == 'UnMark') {
+                        this.parentElement.style.color='black';
+                        markTask.innerHTML = 'Mark';
+                        return;
+                    }else{
+                        this.parentElement.style.color='red';
+                        markTask.innerHTML = 'UnMark';
+                        return;
+                    }
+
+                }
+                document.querySelector('#tasks').append(task);
+
+            }
+            </script>
+        <title>My page</title>
+    </head>
+    <body>
+        <h1>To do Lists</h1>
+        <ol id = 'tasks'>
+        </ol>
+        <div>
+            <form id='newtask'>
+                <input id = 'task' type="text" auto focus placeholder="New Task" autocomplete="off">
+                <input id='submit' type='submit'>
+
+            </form>
+        </div>
+    </body>
+</html>
