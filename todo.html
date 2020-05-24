@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Todo</title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            class Todo extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {
+                        tasks:["task1","task2","task3"],
+                        input:""
+                    }
+                }
+                render(){
+                    return(
+                        <div>
+
+                            <h1>Tasks</h1>
+                            <ul>
+                                {this.state.tasks.map((task,i) =>
+                                    <li key={i}>
+                                        {task}
+                                    </li>
+                                )}
+                            </ul>
+                            <input onChange={this.handleChange} value={this.state.input}/>
+                            <button onClick={this.addTask}> Add Task </button>
+                        </div>
+                    );
+                }
+
+                handleChange = (Event) => {
+                    this.setState({
+                        input:event.target.value
+                    });
+                }
+
+                addTask = () =>{
+                    this.setState(state => ({
+                        tasks:[...state.tasks,state.input]
+                    }))
+                }
+            }
+
+            class App extends React.Component{
+                render(){
+                    return(
+                        <div>
+                            <Todo />
+                            <Todo />
+                            <Todo />
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<App />,document.querySelector("#app"));
+        </script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
